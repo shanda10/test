@@ -1,0 +1,338 @@
+@charset "UTF-8";
+
+@media  screen and (max-width:500px) {
+	
+}
+* {box-sizing: border-box;margin: 0;padding: 0;
+	border-radius: 5px 0 5px 0; }
+body {width: 100%;font-family:helvetica,arial,sans-serif;background: #efefef;}
+header {
+	margin: 10px 15px;
+	padding: 5px;
+	position: relative;/*提供上下文定位*/
+	height: 70px;
+	margin: 10px 0;
+	background: #fff;
+	box-shadow: 0 12px 8px -9px #555;/*负值把阴影定位到盒子内部*/
+}
+header #title {
+	text-align: center;
+	width: 30%;
+	height: 65px;
+	left: 0;
+	top: 0;/*定位到左上角*/
+	position: absolute;
+}
+header h1{
+	font-weight: 800;
+	color: #4eb8ea;
+	letter-spacing: -.03em;
+	line-height: 1;
+	padding: 9px 12px 0; 
+	font-size: 1.2em;
+	background: #555;
+
+}
+header h2 {
+	padding: 10px 22px ;
+	font-weight: 600;
+	line-height: 1;
+	color: #333;
+	letter-spacing: -.03em;
+	font-size: .75em;
+}
+form.search {
+	position: absolute;
+	width: 20%;
+	top: 20px;right: 20px;
+	margin: -5px 0;
+}
+.search input {
+	float: right;width: 170px;
+	padding: 10px 0 10px 0;
+	font-size: 1em;
+	color: #888 ;
+	outline: none;
+}
+form.search label {
+	display: none;
+}
+.search input:focus {
+	border: 1px solid blue;
+}
+form.search input {
+	background-color: #ffffff;
+}
+header nav {
+	margin: 20px auto;
+	text-align: center;
+	padding: 0;
+	font-size: .8em;
+	font:#000;
+}
+nav.menu > ul{
+	display: inline-block;
+}
+nav.menu li {
+	float: left;
+	list-style-type: none;
+	position: relative;
+
+}
+nav.menu li a{
+	display: block;
+	padding: .25em .8em;
+	font-style: normal;
+	text-decoration: none;
+	color: #fff;
+
+}
+nav.menu li .choice1 {
+	background-color: #f58c21;
+}
+nav.menu li .choice2 {
+	background-color: #4eb8ea;
+}
+nav.menu li .choice3 {
+	background-color: #d6e636;
+}
+nav.menu li .choice4 {
+	background-color: #ee4c98;
+}
+nav.menu li .choice5 {
+	background-color: #f58c21;
+}
+nav.menu li:hover >a{
+	color: #555;
+	border-color: #ff9;
+}
+div#article {
+	overflow: hidden;/*包围浮动元素*/
+	margin: 15px 0 0;
+	padding: 0 0 10px;
+
+}
+div#article article {
+	float: left;
+	width: 70%;
+	font-family: "Source Sans Pro",helvetica,sans-serif;
+} 
+div#article aside {
+	float: right;
+	width: 30%;
+}
+div#article article div {
+	margin: 15px;
+	padding: 12px;
+	background-color: #fff;
+	box-shadow: 0 12px 8px -9px #555;
+}
+div#article article a {
+	text-decoration: none;
+}
+div#article article img {
+	float: left;
+	padding: 0 10px 10px 0;
+}
+div#article h3 {
+	color: #555;
+	font-size: 1.5em;
+}
+div#article h4 {
+	font-weight: 500;
+	line-height: 1.1em;
+	font-size: .75em;
+	color: #454;
+}
+article p {
+	font-style: normal;
+	font-size: 1.1em;
+	line-height: 1.5em;
+	color: #616161;
+	text-align: justify;
+	margin: 0;
+}
+article p::first-letter {
+	font-weight: 700;
+	font-size: 3em;
+	float: left;
+	margin: .05em .05em 0 0;
+	text-shadow: 1px 3px 3px #ccc;
+}
+aside {
+	padding: 15px;
+	margin-bottom: 10px;
+}
+form.signin {
+	background-color: #fff;
+	margin-top: 15px;
+	padding: 5px;
+	width: 95%;
+	box-shadow: 0 12px 8px -9px #555;
+	
+}
+form.signin h3 {
+	letter-spacing: -0.03em;
+	font-weight: 500;
+	font-size: .85em;
+	line-height: 1.1em;
+	color: #4eb8ea;
+}
+.signin section {
+	overflow: hidden;
+	padding: .25em 0;
+}
+form.signin label {
+	text-align: left;
+	line-height: 1.5em;
+	float: left;
+	margin: .5em .3em 0 0;
+}
+form.signin input {
+		float: right;
+		width: 8.5em;
+		padding: 3px 10px 2px;
+		margin: .2em 1em .5em;
+		color: #555;
+		outline: none;
+		font-size: .8em;
+}
+form.signin input[type=submit] {
+	float: right;
+	width: auto;
+	background-color: #d6e636;
+	border: none;
+	color: #fff;
+	font-weight: 800;
+}
+form .direction  {
+	display: none;
+}
+.direction.error{
+	display:block; 
+	color: #f00;
+}
+.signup a {
+	color: #333;
+}
+.signup p a:hover {
+	color: #777;
+	text-decoration: none;
+}
+.feature_area {
+	background-color: #fff;
+	width: 95%;
+	 
+	margin:15px 0 0;
+	box-shadow: 0 12px 8px -9px #555;
+	width: 95%;
+	padding: 3px;
+}
+.feature_area h2 {
+	text-align: left;
+	font-weight: 700;
+	font-size: 1.3em;
+	color: #aaa;
+}
+.feature_area ul {
+	margin:0 0 0 20px;
+}
+.feature_area li {
+	list-style: none;
+	position: relative;
+}
+.feature_area li:before {
+	content: "";
+	position: absolute;
+	height: 10px;
+	left: 10px;
+	top: 10px;
+	border-radius: 5px 0 5px 0;
+	background-color: #d6e636;
+}
+.feature_area li a{
+	display: block;
+	text-decoration: none;
+	color: #616161;
+}
+.feature_area li a:hover {
+	color: #000;
+}
+#book_area {
+	clear: both;
+	overflow: hidden;
+	margin: 8px 0 10px;
+}
+#book_area section {
+	float: left;
+	width: 25%;
+	padding: 10px 0;
+}
+#book_area section .inner {/*提供定位*/
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+}
+#book_area section .inner p { /*旋转文字*/
+	position: absolute;
+	width: 160px;
+	left: 70%;bottom: 5px;
+	transform: rotate(-90deg);
+	-ms--transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-o--transform: rotate(-90deg);
+	-moz--transform: rotate(-90deg);
+	transform-origin: left top;
+	-webkit-transform-origin: left top;
+	text-align: left; 
+	color: #956379;
+}
+#book_area section img {/*封面阴影*/
+	width:80%;
+	max-width: 180px; 
+	box-shadow: 0 12px 8px -9px #555;
+}
+#book_area .inner aside {/*弹出层样式*/
+	display: none;
+	position: absolute;
+	z-index: 2;
+	width: 150px;
+	background-color: #fff;
+	padding: 10px 2px 5px;
+}
+#book_area .inner:hover aside {
+	display: block;
+}
+#book_area .inner aside li {
+	padding: .25em 0 .75em 1em; 
+	list-style: none;
+	line-height: 1.2em;
+}
+#book_area .inner aside li a{
+	text-decoration: none;
+	color: #616161;
+}
+#book_area .inner aside li a:hover {
+	color: #333;/*弹出层共享样式结束*/
+}
+#book_area .inner .left {
+	left: 75%;top: 14px;
+}
+#book_area .inner .right {
+	right: 68%;top: 14px;
+}
+#book_area .inner aside:after {/*三角形*/
+	content: "";
+	position: absolute;
+	top: 33px;
+	height: 0px;width: 0px;
+	border: 12px solid;
+}
+#book_area .inner aside.left:after {
+	right: 100%;
+	border-color:transparent #f50 transparent transparent; 
+}
+#book_area .inner aside.right:after {
+	left: 100%;
+	border-color:transparent transparent transparent #f50; 
+}

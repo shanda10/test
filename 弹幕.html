@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>弹幕</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+ 	body {width: 100%;height: 100%;margin: 0;padding: 0;} 
+	#screen {
+		height: 60%;
+		margin:10px 20px;
+		border: 1px solid #333;
+		min-height: 400px;
+		position: relative;
+		overflow: hidden;
+	}
+	input,button {
+		height: 25px;
+		padding: 5px;
+		border: 1px solid;
+}
+
+	#told {
+		border-color: #555;
+		width: 40%;
+		margin: 10px auto;
+		color: #555;
+		display: block;
+	}
+	.button-area {
+		width: 30%;
+		margin: 10px auto;
+		vertical-align: center;
+	}
+	#go {
+		width: 48%;
+		margin-right: 3px;
+		color: orange;
+		border-color: orange;
+	}
+	#clear {
+		width: 48%;
+		color: #555;
+		border-color: #555;
+	}
+	@keyframes one {
+		0% {
+			transform:  translateX(1500px);
+			}
+		100% {
+			transform: translateX(-100px);	
+		}
+	}
+	.move {
+		position: absolute;
+		/*-webkit-animation-name: one;
+		animation-name: one;
+	-webkit-animation-timing-function: cubic-bezier(0.15, 0.32, 0.73, 0.64);
+		-o-animation-timing-function: cubic-bezier(0.15, 0.32, 0.73, 0.64);
+		animation-timing-function: cubic-bezier(0.15, 0.32, 0.73, 0.64);
+	-webkit-animation-duration: 5s;
+	animation-duration: 5s;	*/
+		animation:one 5s cubic-bezier(0.15, 0.32, 0.73, 0.64) forwards;
+	}
+</style>
+</head>
+<body>
+  <div id="screen"></div>  
+  <input type="text" id="told" placeholder="说点什么？">
+  <div class="button-area">
+  	<button id="go" type="submit">发射</button>
+  	<button id="clear">清屏</button>
+	</div>
+	<script type="text/javascript">
+		var colors=["red","blue","green","yellow","orange"],
+		told=document.getElementById("told"),
+			s=document.getElementById("screen");
+		function start (){	
+		var	a=document.createElement("div"),
+			b=document.createTextNode(told.value);
+			
+			a.style.color=colors[Math.floor(Math.random()*colors.length)];
+			a.className=a.className+" "+"move";//弹幕添加动画效果
+			a.style.top=s.offsetHeight*Math.random()+"px";//控制弹幕高度
+			a.appendChild(b);
+			s.appendChild(a);
+			told.value=" ";
+			told.focus();
+		}
+		function clear (){
+			//通过判断是否还有子元素来删除第一个子元素，从而全部删除
+			while(s.hasChildNodes())	{
+				s.removeChild(s.firstChild);
+			}
+		}
+		var g=document.getElementById("go");
+		g.addEventListener("click",start);
+		document.getElementById("clear").addEventListener("click",clear);
+
+	</script>
+</body>
+</html>

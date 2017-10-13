@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+	.wrapper {width: 400px;height: 300px;}
+	#wrong {background: red;}
+	#right {background: green;}
+	#wrong,#right,#high,#low,#reset {display: none;}
+</style>
+
+</head>
+<body>
+ <div class="wrapper">
+ 	<h2>猜数游戏</h2>
+ 	<p>规则：We have selected a random number between 1 and 100. See if you can guess it in 10 turns or less. We'll tell you if your guess was too high or too low.</p>
+ 	<label>输入数字：</label><input type="number" id="a"><button id="submit">提交数字</button>
+ 	<div id="div"i>
+ 	<p>已提交的数字：</p><div id="subnumber"></div>
+ 	<p>剩余次数：<span id="c"></span></p>
+ 	<p id="wrong" >错误!</p>
+ 	<p id="right">正确！</p>
+ 	<p id="high">大了！</p>
+ 	<p id="low">小了！</p>
+ 	<p id="max">已达最大次数</p>
+ 	<button id="reset">重玩</button>
+ 	</div>
+ </div>   
+ <script type="text/javascript">
+ 	var a=document.getElementById("a"),
+ 	submit=document.getElementById("submit"),
+ 	subnumber=document.getElementById("subnumber"),
+ 	w=document.getElementById("wrong"),
+ 	r=document.getElementById("right"),
+ 	h=document.getElementById("high"),
+ 	div=document.getElementById("div")
+ 	l=document.getElementById("low");
+ 	var len=1,
+ 	c=document.getElementById("c");
+ 	random=Math.floor(Math.random()*100+1);
+	div.style.display="none";
+  submit.addEventListener("click",function(){
+  	
+  	w.style.display="none";
+  	r.style.display="none";
+  	h.style.display="none";
+  	l.style.display="none";
+  	div.style.display="block";
+  	document.getElementById("reset").style.display="none";
+  	document.getElementById("max").style.display="none";
+  	subnumber.innerHTML=subnumber.innerHTML+" "+a.value;
+  	c.innerHTML=10-len;
+  	if (len<10){
+  		if (a.value!=random) {
+  			w.style.display="block";
+  			if (a.value>random) {
+  				h.style.display="block";
+  			}else {
+  				l.style.display="block";
+  			}
+  		}else {
+  			r.style.display="block";
+  			document.getElementById("reset").style.display="block";
+  			submit.disabled="disabled";
+  		}
+  	} else {
+  		document.getElementById("reset").style.display="block";
+  		submit.disabled="disabled";
+  		document.getElementById("max").style.display="block";
+  	};
+  	len++;
+  	a.value="";
+  	a.focus();
+  },false);
+document.getElementById("reset").addEventListener("click",function(){
+	location.reload();
+},false)
+ </script>
+</body>
+</html>

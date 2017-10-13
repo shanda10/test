@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="'width=device-width,initical-scale=1.0,user-scale=no">
+<title>天气</title>
+<style type="text/css">
+	.wrapper {
+		-webkit-box-sizing: border-box;
+		        box-sizing: border-box;
+		max-width: 650px;
+		margin: 10px auto;
+
+		background: #1CE2D5FF;
+		border: 1px solid #333;
+		-webkit-box-shadow: 3px 2px 2px 3px #CF0F;
+		        box-shadow: 3px 2px 2px 3px #CF0F;
+	}
+	header {
+		text-align: center;
+		color: #435789;
+	}
+	.today {
+		margin: 20px 30%;
+		width: 40%;
+		text-align: center;
+
+	}
+	h4 {
+		width: 100%;
+		font-weight: 600;
+		text-align: center;
+	}
+	.wrap {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		    -ms-flex-flow: row wrap;
+		        flex-flow: row wrap;
+		-ms-flex-pack: distribute;
+		    justify-content: space-around;
+	}
+	.future {
+		max-width: 300px;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1 1 300px;
+		        flex: 1 1 300px;
+		text-align: center;
+		margin-bottom: 10px;
+
+		border: 1px solid #333;
+		color: green;
+		font-weight: 600;
+		-webkit-box-shadow: 0 2px 1px 2px #44BF;
+		        box-shadow: 0 2px 1px 2px #44BF;
+	}
+</style>
+</head>
+<body>
+  <div class="wrapper"> 
+    <header>
+    	<h1>天气应用</h1>
+    </header>
+    <div class="today" id="today">
+	    <div class="status" >
+	    	<p>{{Data.today.city}}</p>
+	    	<p>{{Data.today.week}}</p>
+	    	<p>{{Data.today.date_y}}</p>
+	    </div>
+	    <hr>
+	    <h4>今日天气</h4>
+	    <p>{{Data.today.weather}}</p>
+	    <p>{{Data.today.temperature}}</p>
+	    <p>{{Data.today.wind}}</p>
+	    <p>穿衣指数：{{Data.today.dressing_index}}</p>
+	    <p>{{Data.today.dressing_advice}}</p>
+			<p>紫外线强度：{{Data.today.uv_index}}</p>
+			<p>洗车指数：{{Data.today.wash_index}}</p>
+			<p>旅行指数：{{Data.today.travel_index}}</p>
+			<p>锻炼指数：{{Data.today.exercise_index}}</p>
+		</div>
+		<hr>
+		<h4>未来天气</h4>
+		<div class="wrap" id="wrap1">
+		<div class="future" id="wrap">
+			<p>{{date}}</p>
+			<p>{{week}}</p>
+			<p>{{wind}}</p>
+			<p>{{temperature}}</p>
+	 	</div>
+	</div>
+</div>
+		<script type="text/javascript" src="data.js"></script>
+		<script type="text/javascript">
+			function g(selector){
+				return document.getElementById(selector);
+			}
+			/*var xhr=new XMLHttpRequest();
+			var api="http://v.juhe.cn/weather/ip";
+			var key="deea9493cf7986f28067f60299ea792d";
+			var dtype="json";
+			var ip="14.196.212.110";
+			var url=api+"?format=2&key="+key+"&ip="+ip ;
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if(xhr.status>=200&&xhr.status<300||xhr.status==304){
+						var data=xhr.responseText[result];
+						addtoday();
+						adddata();
+					}
+				}	
+			}
+			xhr.open("get",url,true);
+			xhr.setRequestHeader("Origin","http://v.juhe.cn/");
+			xhr.send(null);*/
+			var data=data.result;
+			addtoday();
+			adddata();
+			function addtoday(){
+			
+				var today=g("today").innerHTML;
+				var html=[];
+				var html=today.replace("{{Data.today.city}}",data.today.city)
+							.replace("{{Data.today.week}}",data.today.week)
+							.replace("{{Data.today.temperature}}",data.today.temperature)
+							.replace("{{Data.today.wind}}",data.today.wind)
+							.replace("{{Data.today.date_y}}",data.today.date_y)
+							.replace("{{Data.today.weather}}",data.today.weather)
+							.replace("{{Data.today.dressing_advice}}",data.today.dressing_advice)
+							.replace("{{Data.today.dressing_index}}",data.today.dressing_index)
+							.replace("{{Data.today.uv_index}}",data.today.uv_index)
+							.replace("{{Data.today.wash_index}}",data.today.wash_index)
+							.replace("{{Data.today.travel_index}}",data.today.travel_index)
+							.replace("{{Data.today.exercise_index}}",data.today.exercise_index);
+				g("today").innerHTML=html;
+			}
+			function adddata(){
+				
+				var item=g("wrap1").innerHTML;
+				var html=[];
+				for (s in data.future){
+					var _html=item
+											.replace('{{date}}',data.future[s].date)
+											.replace('{{week}}',data.future[s].week)
+											.replace('{{wind}}',data.future[s].wind)
+											.replace('{{temperature}}',data.future[s].temperature);
+					html.push(_html);
+				}
+				g('wrap1').innerHTML=html.join("");
+			}
+		</script>
+</body>
+</html>
