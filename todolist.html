@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+	.wrap {
+	margin:10px auto 0;
+	width:400px;
+	position:relative;
+}
+h1 {
+	text-align: center;
+	color: orange;
+}
+#newtodo {
+	margin-left:17px;	
+}
+input {
+	outline:none;
+	border:1px solid rgba(0,0,0,.1);
+	margin-bottom:5px;
+	height:30px;
+	line-height:30px;
+	font-size:1.5em;
+}
+.go {
+	position: absolute;
+    left: -3px;
+    top: 6px;
+    z-index: 9;
+
+    font-size: 1.4em;
+    color: green;
+}
+.dele {
+	font-weight:600;
+	position:absolute;
+	right:70px;
+	top:6px;
+	color:#F44336;
+	opacity:.7;
+	display:none;
+}
+.item {
+	position:relative;
+}
+.item input {
+	background: rgba(255,255,255,.6);
+}
+.item:hover .dele{
+	display:block;
+}
+.dele:hover {
+	opacity: 1;
+}
+.did {
+	content:'1';
+	border:1px solid #888;
+	width:30px;
+	height:30px;
+	border-radius:50%;
+	color:#fff;
+}
+.no {
+	display:none;
+}
+.done .ready{
+	text-decoration: line-through;
+	color: rgba(0,0,0,.5);
+}
+.footer {
+	position: relative;
+	width: 100%;
+}
+.footer span{
+	margin-left: 10px; 
+
+	display: inline-block;
+	border: 1px solid #555;
+	font-size: .6em;
+	padding: 2px;
+	border-radius: 3px;
+	-webkit-box-shadow: 1px 1px 1px 1px #666;
+	        box-shadow: 1px 1px 1px 1px #666;
+
+}
+.footer #number {
+	position: absolute;
+	left: 55px;
+    top: 1px;
+	border-left:0 ; 
+
+}
+.footer #all {
+	margin-left: 50px; 
+}
+</style>
+</head>
+<body>
+ <div class="wrap">
+    <h1>ToDoList</h1>
+   
+		
+    	<input type="text" name="newtodo" placeholder="添加新事项" id="newtodo" onkeydown="keydown(event,this)" >
+  
+    <div class="item no" id="item0">
+    		<span class="go no">√</span>
+    		<span class="did" onclick="did(this)"> 1 </span>
+    		<input class="ready" id="new1" type="text" name="item" readonly="true" value=" " ondblclick="change(this)">
+    		<span class="dele" onclick="dele(this)">×</span>
+    </div>
+    <div id='list'>
+ 	
+    </div>
+
+	  <div class="footer">
+	  	<span>剩余事项</span>
+	  	<span id="number">0</span>
+	  	<span id="all" onclick="show()">全部事项</span>
+	  	<span id="active" onclick="hiddendid()">待办事项</span>
+	  	<span id="got" onclick="hiddenactive()">已完成</span>
+	  </div>
+	</div>   
+    <script type="text/javascript">
+    	var num=document.getElementById('number');
+    	var n=0;
+    	function add(value){
+    		if(value==''){
+    			return false;
+    		};
+    		var _html=document.getElementById('item0');
+    		var html=_html.cloneNode(true);
+    		html.id='';
+    		html.className='item';
+    		html.childNodes[5].value=value;
+    		var list=document.getElementById('list');
+    		list.appendChild(html);
+    		n++;
+    		num.innerHTML=n;
+
+    		value='';
+    		
+    		return false;
+    	}
+    	function keydown(e,obj){
+    		var ev=window.event||e;
+    		if(ev.keyCode==13){
+    			add(obj.value);
+    			obj.value='';
+    		}
+    	}
+    	
+    	function did(obj){
+    		console.log(obj.parentNode.className=='item done');
+    		if(obj.parentNode.className=='item done') {
+    			obj.parentNode.className='item';
+    			//obj.parentNode.childNodes[1].className='go no';  
+    			 			
+    			n++;
+    			num.innerHTML=n;
+    			return;
+    		}
+     		if(obj.parentNode.className=='item'){
+     			
+    			obj.parentNode.className ='item done';
+    			//obj.parentNode.childNodes[1].className='go';
+					
+    			n--;
+    			num.innerHTML=n;
+    			return;
+	    	}	
+    	}
+    	function dele(obj){
+    		obj.parentNode.parentNode.removeChild(obj.parentNode);
+    		if(obj.parentNode.className=='item'){
+    			n--;
+    			num.innerHTML=n;
+    		}
+    	}
+    	function change(obj){
+    		obj.readonly=false;
+    		obj.style.background='#fff';
+    	}
+    	function show(){
+    		var a=document.getElementsByClassName('item');
+    		for(var i=1;i<a.length;i++){
+    			a[i].className=a[i].className.replace(' no',' ');
+    		}
+    	}
+    	function hiddendid(){
+    		var a=document.getElementsByClassName('item');
+    		for(var i=1;i<a.length;i++){
+    			a[i].className=a[i].className.replace(' no','');
+    		}
+    		var b=document.getElementsByClassName('done');
+    		for(var i=0;i<b.length;i++){
+    			b[i].className=b[i].className+' no';
+    		}
+    	}
+    	function hiddenactive(){
+    		var a=document.getElementsByClassName('item');
+    		var b=document.getElementsByClassName('done');
+    		for(var i=1;i<a.length;i++){
+    			a[i].className=a[i].className.replace(' no','');
+    			a[i].className+=' no';
+    		};
+    		for(var j=0;j<b.length;j++){
+    			b[j].className=b[j].className.replace(' no','');
+    		}
+    	}
+    </script>
+</body>
+</html>
