@@ -93,11 +93,12 @@
 	 	</div>
 	</div>
 </div>
-		<script type="text/javascript" src="data.js"></script>
+		
 		<script type="text/javascript">
 			function g(selector){
 				return document.getElementById(selector);
 			}
+		// 因为浏览器同源策略 无法直接获取服务端数据 只能用获取的数据作为数据源
 			/*var xhr=new XMLHttpRequest();
 			var api="http://v.juhe.cn/weather/ip";
 			var key="deea9493cf7986f28067f60299ea792d";
@@ -116,7 +117,123 @@
 			xhr.open("get",url,true);
 			xhr.setRequestHeader("Origin","http://v.juhe.cn/");
 			xhr.send(null);*/
-			var data=data.result;
+
+
+			var data = {
+	"resultcode": "200",
+	"reason": "successed!",
+	"result": {
+		"sk": {
+			"temp": "23",
+			"wind_direction": "东北风",
+			"wind_strength": "1级",
+			"humidity": "77%",
+			"time": "19:40"
+		},
+		"today": {
+			"temperature": "18℃~23℃",
+			"weather": "小雨转阴",
+			"weather_id": {
+				"fa": "07",
+				"fb": "02"
+			},
+			"wind": "微风",
+			"week": "星期六",
+			"city": "成都",
+			"date_y": "2017年09月30日",
+			"dressing_index": "热",
+			"dressing_advice": "天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装。",
+			"uv_index": "最弱",
+			"comfort_index": "",
+			"wash_index": "较适宜",
+			"travel_index": "较适宜",
+			"exercise_index": "较适宜",
+			"drying_index": ""
+		},
+		"future": {
+			"day_20170930": {
+				"temperature": "18℃~23℃",
+				"weather": "小雨转阴",
+				"weather_id": {
+					"fa": "07",
+					"fb": "02"
+				},
+				"wind": "微风",
+				"week": "星期六",
+				"date": "20170930"
+			},
+			"day_20171001": {
+				"temperature": "18℃~27℃",
+				"weather": "阴",
+				"weather_id": {
+					"fa": "02",
+					"fb": "02"
+				},
+				"wind": "微风",
+				"week": "星期日",
+				"date": "20171001"
+			},
+			"day_20171002": {
+				"temperature": "17℃~24℃",
+				"weather": "阴转小雨",
+				"weather_id": {
+					"fa": "02",
+					"fb": "07"
+				},
+				"wind": "微风",
+				"week": "星期一",
+				"date": "20171002"
+			},
+			"day_20171003": {
+				"temperature": "15℃~21℃",
+				"weather": "阴转小雨",
+				"weather_id": {
+					"fa": "02",
+					"fb": "07"
+				},
+				"wind": "微风",
+				"week": "星期二",
+				"date": "20171003"
+			},
+			"day_20171004": {
+				"temperature": "15℃~21℃",
+				"weather": "阴",
+				"weather_id": {
+					"fa": "02",
+					"fb": "02"
+				},
+				"wind": "微风",
+				"week": "星期三",
+				"date": "20171004"
+			},
+			"day_20171005": {
+				"temperature": "17℃~24℃",
+				"weather": "阴转小雨",
+				"weather_id": {
+					"fa": "02",
+					"fb": "07"
+				},
+				"wind": "微风",
+				"week": "星期四",
+				"date": "20171005"
+			},
+			"day_20171006": {
+				"temperature": "17℃~24℃",
+				"weather": "阴转小雨",
+				"weather_id": {
+					"fa": "02",
+					"fb": "07"
+				},
+				"wind": "微风",
+				"week": "星期五",
+				"date": "20171006"
+			}
+		}
+	},
+	"error_code": 0
+}
+
+			data=data.result;
 			addtoday();
 			adddata();
 			function addtoday(){
